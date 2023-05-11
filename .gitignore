@@ -1,0 +1,9 @@
+toDo-front/to-do/node_modules
+go_excel/tmp
+go_excel/.air.toml
+go_excel/utils.go
+go_excel/ya-api.go
+todo/tmp
+todo/.air.toml
+todo/simple_bank
+kafka

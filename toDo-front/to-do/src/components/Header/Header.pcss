@@ -1,0 +1,27 @@
+@import '/src/styles/settings.pcss';
+
+.header {
+  position: relative;
+  height: var(--header-height);
+  width: 100%;
+  background-color: var(--black);
+  display: flex;
+  z-index: 10;
+
+  &_modal {
+    z-index: 1;
+  }
+
+  &_icon {
+    fill: var(--white);
+  }
+  &_icon-area {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    background: var(--gray_0);
+  }
+}

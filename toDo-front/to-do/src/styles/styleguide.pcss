@@ -1,0 +1,94 @@
+@import '/src/styles/settings.pcss';
+
+body {
+  font-size: var(--base-font-size);
+  font-family: var(--base-font-family);
+  font-weight: var(--base-font-weight);
+  background-color: var(--white);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.styleguide {
+  &_bg {
+    margin: -17px;
+    padding: 17px;
+    border-radius: 3px;
+
+    &-dark {
+      background-color: #191919;
+    }
+
+    &-gray {
+      background-color: #f2f2f2;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: flex-start;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  &__commercial-button {
+    width: 90px;
+    margin-right: 10px;
+  }
+
+  &__labeled {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin-top: 5px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    flex-flow: wrap;
+  }
+
+  &__icons-elem {
+    margin: 10px;
+    width: 40px;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  &__icons-name {
+    display: block;
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  &__forms {
+    max-width: 380px;
+
+    &_textarea {
+      padding: 0;
+      max-width: 540px;
+    }
+
+    .input {
+      margin-top: 20px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__dropdown-list {
+    position: relative;
+    width: 205px;
+  }
+}

@@ -1,0 +1,30 @@
+@import '/src/styles/settings.pcss';
+
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+html, body, #app, .full_height_width, #root{
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-size: var(--base-font-size);
+  font-family: var(--base-font-family);
+  font-weight: var(--base-font-weight);
+  background-color: var(--white);
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  color: var(--white);
+  background-color: rgba(26, 102, 255, 0.996);
+}
+
+.nobr {
+  white-space: nowrap;
+}

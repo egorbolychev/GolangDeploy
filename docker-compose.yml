@@ -1,0 +1,90 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    restart: always
+    container_name: database
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=password
+    - POSTGRES_DB=tododb
+    ports:
+      - "5532:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    container_name: zookeeper
+    extra_hosts:
+    - "moby:127.0.0.1"
+    ports:
+      - "2183:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: broker
+    extra_hosts:
+    - "moby:127.0.0.1"
+    depends_on:
+      - zookeeper
+    ports:
+      - '9092:9092'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://broker:9092'
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+    
+  server:
+    restart: always
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./todo/Dockerfile
+    depends_on:
+      - database
+      - broker
+      - zookeeper
+    networks:
+      - default
+    ports:
+      - "8000:8000"
+    links:
+      - database
+      - broker
+    
+  excel-server:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./go_excel/Dockerfile
+    depends_on:
+      - database
+      - broker
+      - zookeeper
+    networks:
+      - default
+    links:
+      - broker
+    
+  frontend:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./toDo-front/to-do/Dockerfile
+    depends_on:
+      - server
+      - database
+    networks:
+      - default
+    ports:
+      - "3000:3000"
+    links:
+      - server
+
+volumes:
+  data:
