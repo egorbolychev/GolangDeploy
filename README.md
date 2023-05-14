@@ -19,4 +19,5 @@
 
 https://yandex.ru/dev/disk/api/concepts/quickstart.html
 
+После чего заменяем значение authToken в файле go_excel/ya-config.toml
 
