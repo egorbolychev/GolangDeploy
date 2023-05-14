@@ -21,8 +21,7 @@ type TableData struct {
 }
 
 func main() {
-	// kafkaConn = kafka.NewReader(kafka.ReaderConfig{Brokers: []string{"broker:9092"}, Topic: "ya-excel", Partition: 0, MinBytes: 10e3, MaxBytes: 10e6})
-	kafkaConn = kafka.NewReader(kafka.ReaderConfig{Brokers: []string{"localhost:9092"}, Topic: "ya-excel", Partition: 0, MinBytes: 10e3, MaxBytes: 10e6})
+	kafkaConn = kafka.NewReader(kafka.ReaderConfig{Brokers: []string{"broker:9092"}, Topic: "ya-excel", Partition: 0, MinBytes: 10e3, MaxBytes: 10e6})
 	kafkaConn.SetOffset(-1)
 
 	for {

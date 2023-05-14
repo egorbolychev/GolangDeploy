@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -42,8 +41,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// kafkaConn, err = kafka.DialLeader(context.Background(), "tcp", "broker:9092", "ya-excel", 0)
-	kafkaConn, err = kafka.DialLeader(context.Background(), "tcp", "localhost:9092", "ya-excel", 0)
+	kafkaConn, err = kafka.DialLeader(context.Background(), "tcp", "broker:9092", "ya-excel", 0)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -104,14 +102,13 @@ func AuthMiddleware(handler http.Handler) http.Handler {
 				login,
 			)
 			err := row.Scan(&id)
-			if err != nil {
+			if err != nil || !token {
 				w.WriteHeader(http.StatusUnauthorized)
 				_, err := w.Write([]byte("You're Unauthorized due to invalid token"))
 				if err != nil {
 					return
 				}
 			}
-			fmt.Println(token)
 
 			ctx := r.Context()
 			ctx = context.WithValue(ctx, "userId", id)
