@@ -7,7 +7,7 @@ import axios from "axios";
 import {API_SERVER} from "/src/Variables"
 import { useSelector } from 'react-redux';
 
-const MainPage = ({setIsNew}) => {
+const MainPage = ({setIsNew, refreshOptions}) => {
   const user = useSelector(state => state.user)
   const [title, setTitle] = useState('')
   const [newList, setNewList] = useState(['', ])
@@ -38,7 +38,8 @@ const MainPage = ({setIsNew}) => {
                     }
                     }).then(data => {
                         console.log(data.data)
-                        alert('Успшно сохранено!')
+                        alert('Успешно сохранено!')
+                        refreshOptions()
                         setIsNew(false)
                     }).catch(error => {
                     console.log(error)

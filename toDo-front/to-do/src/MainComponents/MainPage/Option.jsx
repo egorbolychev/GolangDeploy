@@ -26,7 +26,7 @@ const Option = ({list, listItems, setListItems}) => {
         }).then(data => {
             if (data.status === 200)  {
                 console.log(data.data)
-                alert('Успшно сохранено!')
+                alert('Успешно сохранено!')
                 setChanged(false)
             }
         }).catch(error => {
@@ -56,7 +56,7 @@ const Option = ({list, listItems, setListItems}) => {
         }).then(data => {
             if (data.status === 200)  {
                 console.log(data.data)
-                alert('Успшно сохранено!')
+                alert('Сохранено на яндекс диск!')
             }
         }).catch(error => {
         console.log(error)
@@ -67,7 +67,7 @@ const Option = ({list, listItems, setListItems}) => {
     <div>
         <ul>
         <SqrButton
-            title='Сохранить список на яндекс диске'
+            title='Сохранить список на яндекс диск'
             className='list-sqrt'
             onClick={saveInDisk}
             icon="mail"

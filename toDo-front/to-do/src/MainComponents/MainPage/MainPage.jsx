@@ -105,7 +105,7 @@ const MainPage = () => {
           />
       </div>
       {isNew ? 
-      <NewOpt setIsNew={setIsNew}/>
+      <NewOpt setIsNew={setIsNew} refreshOptions={refreshOptions}/>
       : <div>{list.value !== '' && <Option list={list} listItems={listItems} setListItems={setListItems}/>}</div>
       }
     </div>
